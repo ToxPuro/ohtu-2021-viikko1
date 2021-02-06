@@ -56,6 +56,27 @@ class TestVarasto(unittest.TestCase):
         self.varasto.lisaa_varastoon(5)
         self.varasto.ota(-5)
         self.assertAlmostEqual(self.varasto.saldo,5)
+
+    def negatiivinen_tilavuus_nolla(self):
+        varasto=Varasto(-2)
+        self.assertAlmostEqual(varasto.tilavuus,0)
+
+    def uudella_varastolla_oikea_saldo(self):
+        self.assertAlmostEqual(varasto.saldo,0)
+
+    def saldo_on_oikea(self):
+        varasto=Varasto(10,5)
+        self.assertAlmostEqual(varasto.saldo,5)
+
+    def ei_voi_antaa_negatiivista_saldoa(self):
+        varasto=Varasto(10,-1)
+        self.assertAlmostEqual(varasto.saldo,0)
+
+    def alku_saldo_ei_ole_enempaa_kuin_tilavuus(self):
+        varasto=Varasto(2,3)
+        self.assertAlmostEqual(varasto.saldo,2)
+
+    
     
 
 

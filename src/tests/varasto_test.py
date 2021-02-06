@@ -39,42 +39,45 @@ class TestVarasto(unittest.TestCase):
         # varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         self.assertAlmostEqual(self.varasto.paljonko_mahtuu(), 4)
 
-    def liika_ottaminen_ottaa_kaiken(self):
+    def test_liika_ottaminen_ottaa_kaiken(self):
         self.varasto.lisaa_varastoon(10)
         self.assertAlmostEqual(self.varasto.ota_varastosta(100),10)
 
-    def liika_tayttaminen_ei_tayta_liikaa(self):
+    def test_liika_tayttaminen_ei_tayta_liikaa(self):
         self.varasto.lisaa_varastoon(100)
         self.assertAlmostEqual(self.varasto.saldo,self.varasto.tilavuus)
 
-    def negatiivinen_lisays_ei_muuta(self):
+    def test_negatiivinen_lisays_ei_muuta(self):
         self.varasto.lisaa_varastoon(5)
         self.varasto.lisaa_varastoon(-5)
         self.assertAlmostEqual(self.varasto.saldo,5)
 
-    def negatiivinen_otto_ei_muuta(self):
+    def test_negatiivinen_otto_ei_muuta(self):
         self.varasto.lisaa_varastoon(5)
-        self.varasto.ota(-5)
+        self.varasto.ota_varastosta(-5)
         self.assertAlmostEqual(self.varasto.saldo,5)
 
-    def negatiivinen_tilavuus_nolla(self):
+    def test_negatiivinen_tilavuus_nolla(self):
         varasto=Varasto(-2)
         self.assertAlmostEqual(varasto.tilavuus,0)
 
-    def uudella_varastolla_oikea_saldo(self):
-        self.assertAlmostEqual(varasto.saldo,0)
+    def test_uudella_varastolla_oikea_saldo(self):
+        self.assertAlmostEqual(self.varasto.saldo,0)
 
-    def saldo_on_oikea(self):
+    def test_saldo_on_oikea(self):
         varasto=Varasto(10,5)
         self.assertAlmostEqual(varasto.saldo,5)
-x
-    def ei_voi_antaa_negatiivista_saldoa(self):
+        
+    def test_ei_voi_antaa_negatiivista_saldoa(self):
         varasto=Varasto(10,-1)
         self.assertAlmostEqual(varasto.saldo,0)
 
-    def alku_saldo_ei_ole_enempaa_kuin_tilavuus(self):
+    def test_alku_saldo_ei_ole_enempaa_kuin_tilavuus(self):
         varasto=Varasto(2,3)
         self.assertAlmostEqual(varasto.saldo,2)
+
+    def test_str_oikein(self):
+        self.assertEqual(str(self.varasto),"saldo = 0, vielä tilaa 10")
 
     
     

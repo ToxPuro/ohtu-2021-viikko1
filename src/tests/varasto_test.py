@@ -67,7 +67,7 @@ class TestVarasto(unittest.TestCase):
     def saldo_on_oikea(self):
         varasto=Varasto(10,5)
         self.assertAlmostEqual(varasto.saldo,5)
-
+x
     def ei_voi_antaa_negatiivista_saldoa(self):
         varasto=Varasto(10,-1)
         self.assertAlmostEqual(varasto.saldo,0)

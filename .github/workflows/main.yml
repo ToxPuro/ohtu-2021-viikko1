@@ -39,6 +39,6 @@ jobs:
       - name: Coverage report to Codecov
         run: bash <(curl -s https://codecov.io/bash)
       - name: Pylint test
-        run: poetry run pylint src
+        run: poetry run pylint
         
         
